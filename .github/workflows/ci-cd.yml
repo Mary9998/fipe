@@ -40,9 +40,9 @@ jobs:
 
       - name: Checagem de sintaxe (sanidade da app)
         working-directory: app
-        run: python -m py_compile app.py bcb_client.py
+        run: python -m py_compile app.py fipe_client.py
         # Nota: usamos py_compile (só verifica sintaxe) em vez de
-        # `import app`, porque app.py chama bcb.init_db() assim que o
+        # `import app`, porque app.py chama fipe.init_db() assim que o
         # módulo é carregado (necessário para funcionar sob gunicorn em
         # produção — ver README, Troubleshooting item 3). Um import de
         # verdade aqui exigiria AIVEN_DB_URL configurada no runner do CI
