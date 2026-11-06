@@ -12,9 +12,6 @@ on:
       - "app/**"
       - "Dockerfile"
 
-env:
-  IMAGE_NAME: ghcr.io/${{ github.repository }}/dashboard-app
-
 jobs:
   test:
     name: Testes e lint
@@ -41,15 +38,8 @@ jobs:
       - name: Checagem de sintaxe (sanidade da app)
         working-directory: app
         run: python -m py_compile app.py fipe_client.py
-        # Nota: usamos py_compile (só verifica sintaxe) em vez de
-        # `import app`, porque app.py chama fipe.init_db() assim que o
-        # módulo é carregado (necessário para funcionar sob gunicorn em
-        # produção — ver README, Troubleshooting item 3). Um import de
-        # verdade aqui exigiria AIVEN_DB_URL configurada no runner do CI
-        # e uma conexão de rede até o Postgres, o que foge do escopo de
-        # um teste rápido de lint/sintaxe.
 
-   build-and-push:
+  build-and-push:
     name: Build + push da imagem Docker
     needs: test
     runs-on: ubuntu-latest
@@ -93,5 +83,4 @@ jobs:
 
       - name: Health check pós-deploy
         run: |
-          sleep 45
-          curl -fsS "${{ secrets.APP_HEALTHCHECK_URL }}/healthz"
+          curl -fsS --retry 8 --retry-delay 15 --retry-all-errors "${{ secrets.APP_HEALTHCHECK_URL }}/healthz"
