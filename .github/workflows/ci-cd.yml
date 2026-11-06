@@ -75,8 +75,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ghcr.io/mary9998/fipe/dashboard-app:latest
+            ghcr.io/mary9998/fipe/dashboard-app:${{ github.sha }}
 
   deploy:
     name: Deploy (Render)
