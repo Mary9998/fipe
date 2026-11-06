@@ -22,9 +22,9 @@ TIMEOUT = 20  # segundos por requisição
 #   name:       nome mostrado no dashboard (None = usa o modelo vindo da API)
 # TROQUE pelos carros que você quer. Para achar códigos: python fipe_client.py marcas
 SERIES = {
-    "095007-6": {"name": "Dolphin EV GS (Elétrico)", "ano_modelo": 2027, "unit": "R$", "casas": 2},
-    "008030-6": {"name": "100 2.8 V6", "ano_modelo": 1995, "unit": "R$", "casas": 2},
-    "001494-0": {"name": "ARGO DRIVE 1.0 6V Flex", "ano_modelo": 2026, "unit": "R$", "casas": 2},
+    "095007-6": {"name": "Dolphin EV GS (Elétrico)", "ano_modelo": None, "unit": "R$", "casas": 2},
+    "008030-6": {"name": "100 2.8 V6", "ano_modelo": None, "unit": "R$", "casas": 2},
+    "001494-0": {"name": "ARGO DRIVE 1.0 6V Flex", "ano_modelo": None, "unit": "R$", "casas": 2},
 }
 
 N_TABELAS = 6            # quantos meses de histórico buscar
